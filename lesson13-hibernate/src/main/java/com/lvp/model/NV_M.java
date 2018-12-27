@@ -2,7 +2,10 @@ package com.lvp.model;
 
 import java.util.Date;
 
-public class NHANVIEN {
+import org.springframework.stereotype.Component;
+
+@Component("MODEL_NHANVIEN")
+public class NV_M {
 	private long ID;
 	private String EMAIL;
 	private String PASSWORDS;

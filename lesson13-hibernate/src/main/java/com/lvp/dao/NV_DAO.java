@@ -24,13 +24,30 @@ public class NV_DAO implements NV_IMPLEMENT{
 
 	@Override
 	@Transactional
-	public void getNHANVIEN() {
-		System.out.println("Triệu gọi NV_DAO");
+	public List<NHANVIEN> ALL_NHANVIEN() {
 		Session ss = sessionFactory.getCurrentSession();
-		String sql = "from NHANVIEN";
-		List<NHANVIEN> lsNV = (List<NHANVIEN>) ss.createQuery(sql).getResultList();
-		for(NHANVIEN nv : lsNV) {
-			System.out.println(nv.getEMAIL());
+		String sql = "FROM NHANVIEN";
+		List<NHANVIEN> lsnv = ss.createQuery(sql).getResultList();
+//		ss.close();
+		return lsnv;
+	}
+	
+	@Transactional
+	public NHANVIEN GETONE(String email) {
+		Session ss = sessionFactory.getCurrentSession();
+//		ss.close();
+		return null;
+	}
+	
+	@Transactional
+	public boolean ADDONE(NHANVIEN nv) {
+		try {
+			Session ss = sessionFactory.getCurrentSession();
+			ss.save(nv);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 	

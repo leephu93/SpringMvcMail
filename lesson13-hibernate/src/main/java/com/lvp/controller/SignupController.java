@@ -1,11 +1,5 @@
 package com.lvp.controller;
 
-import java.util.Date;
-
-import javax.transaction.Transactional;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,38 +7,40 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.lvp.entity.NHANVIEN;
+import com.lvp.model.NV_M;
+import com.lvp.service.NV_SERVICE;
 
 @Controller
 @RequestMapping("signup/")
 public class SignupController {
 
 	@Autowired
-	SessionFactory sessionFactory;
+	NV_SERVICE nvs;
 
 	@GetMapping()
 	public String GetSignup() {
-
 		return "signup";
 	}
 
 	@PostMapping()
-	@Transactional
 	public String PostSignup(ModelMap model, @RequestParam("EMAIL") String email,
 			@RequestParam("PASSWORDS") String passwords, @RequestParam("RE_PASSWORDS") String re_passwords) {
 		if (email.trim().length() != 0 && passwords.trim().length() != 0 && re_passwords.trim().length() != 0) {
 			if (passwords.equals(re_passwords)) {
-				try {
-					Session ss = sessionFactory.getCurrentSession();
-					Date d = new Date();
-					NHANVIEN nv = new NHANVIEN(d.getTime(), email, passwords, d);
-					ss.save(nv);
-					return "redirect:/signin/";
-				} catch (Exception e) {
-					e.printStackTrace();
-					model.addAttribute("alert", "Register unsuccessful...");
+				NV_M ck_nv = nvs.GETONE(email);
+				if (ck_nv != null) {
+					model.addAttribute("alert", "This account is existed in our system. Choose other account, please!...");
+				} else {
+					NV_M nv = new NV_M();
+					nv.setEMAIL(email);
+					nv.setPASSWORDS(passwords);
+					boolean rs = nvs.ADDONE(nv);
+					if (rs == true) {
+						return "redirect:/signin/";
+					} else {
+						model.addAttribute("alert", "Register unsuccessful...");
+					}
 				}
 			} else {
 				model.addAttribute("alert", "Passwords and re_passwords are not equally...");

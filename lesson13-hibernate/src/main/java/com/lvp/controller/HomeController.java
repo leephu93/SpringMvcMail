@@ -21,7 +21,6 @@ public class HomeController {
 	@GetMapping
 	public String home(ModelMap model) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("IOC.xml");		
-		nvs.getNHANVIEN();
 		return "home";
 	}
 

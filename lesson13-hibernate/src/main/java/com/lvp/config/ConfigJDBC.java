@@ -25,11 +25,11 @@ public class ConfigJDBC {
 	
 	public void getListNHANVIEN() {
 		String sql = "Select * from NHANVIEN";
-		List<NHANVIEN> lsNV = jdbcTemplate.query(sql, new RowMapper<NHANVIEN>() {
+		List<NV_M> lsNV = jdbcTemplate.query(sql, new RowMapper<NV_M>() {
 
 			@Override
-			public NHANVIEN mapRow(ResultSet rs, int rowNum) throws SQLException {
-				NHANVIEN nv = new NHANVIEN();
+			public NV_M mapRow(ResultSet rs, int rowNum) throws SQLException {
+				NV_M nv = new NV_M();
 				nv.setID(rs.getInt("ID"));
 				nv.setEMAIL(rs.getString("EMAIL"));
 				nv.setPASSWORDS(rs.getString("PASSWORDS"));
@@ -41,7 +41,7 @@ public class ConfigJDBC {
 			
 		});
 		
-		for(NHANVIEN nv : lsNV) {
+		for(NV_M nv : lsNV) {
 			System.out.println(nv.getEMAIL());
 		}
 	}
