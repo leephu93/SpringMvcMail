@@ -17,6 +17,7 @@ public class SignoutController {
 	@GetMapping()
 	public String postSignout() {
 		ss.removeAttribute("user");
+		ss.removeAttribute("image");
 		return "redirect:/signin/";
 	}
 	

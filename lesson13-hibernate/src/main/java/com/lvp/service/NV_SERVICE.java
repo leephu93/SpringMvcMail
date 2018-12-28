@@ -35,8 +35,13 @@ public class NV_SERVICE {
 
 	public boolean ADDONE(NV_M mnv) {
 		Date d = new Date();
-		NHANVIEN nv = new NHANVIEN(d.getTime(), mnv.getEMAIL(), mnv.getPASSWORDS(), d);
-		return nvd.ADDONE(nv);
+		if (mnv.getIMAGE().length == 0) {
+			NHANVIEN nv = new NHANVIEN(d.getTime(), mnv.getEMAIL(), mnv.getPASSWORDS(), d);
+			return nvd.ADDONE(nv);
+		} else {
+			NHANVIEN nv = new NHANVIEN(d.getTime(), mnv.getEMAIL(), mnv.getPASSWORDS(), mnv.getIMAGE(), d);
+			return nvd.ADDONE(nv);
+		}
 	}
 
 }

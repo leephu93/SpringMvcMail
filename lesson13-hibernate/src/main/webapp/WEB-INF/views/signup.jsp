@@ -48,7 +48,7 @@
 						</button>
 					</div>
 				</c:if>
-				<form action="<%=signup%>" method="post">
+				<form action="<%=signup%>" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Email address</label> 
 						<input type="EMAIL" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="EMAIL">
@@ -76,6 +76,8 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<img alt="..." src="${ url_image }">
+	
 </body>
 </html>

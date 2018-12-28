@@ -1,4 +1,10 @@
 @charset "UTF-8";
+
 .error{
 	color: red;
+}
+
+.img_account{
+	width: 24px;
+	height: 24px;
 }

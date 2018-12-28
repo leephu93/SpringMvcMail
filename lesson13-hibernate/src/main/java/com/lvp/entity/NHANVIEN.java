@@ -54,6 +54,14 @@ public class NHANVIEN {
 		this.PASSWORDS = PASSWORDS;
 		this.CREATED_AT = CREATED_AT;
 	}
+	
+	public NHANVIEN(long ID, String EMAIL, String PASSWORDS, byte[] IMAGE ,Date CREATED_AT) {
+		this.ID = ID;
+		this.EMAIL = EMAIL;
+		this.PASSWORDS = PASSWORDS;
+		this.IMAGE = IMAGE;
+		this.CREATED_AT = CREATED_AT;
+	}
 
 	public long getID() {
 		return ID;

@@ -1,5 +1,7 @@
 package com.lvp.controller;
 
+import java.util.Base64;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,10 @@ public class SigninController {
 					if(nv != null) {
 						if(nv.getPASSWORDS().equals(passwords)) {
 							session.setAttribute("user", nv);
+							if(nv.getIMAGE() != null) {
+								String image = "data:image/*;base64,"+Base64.getEncoder().encodeToString(nv.getIMAGE());
+								session.setAttribute("image", image);
+							}
 							return "redirect:/admin/";
 						}
 						else {
