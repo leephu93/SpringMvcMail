@@ -63,7 +63,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="<%=signup%>" method="post">
+				<form action="<%=signup%>" method="post" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Email address</label> <input type="email"
 							class="form-control" aria-describedby="emailHelp"
@@ -86,7 +86,6 @@
 					</div>
 					<button type="reset" class="btn btn-secondary">Reset</button>
 					<button type="submit" class="btn btn-success">Signup</button>
-
 				</form>
 			</div>
 			<div class="modal-footer">

@@ -1,5 +1,7 @@
 package com.lvp.controller;
 
+import org.json.JSONString;
+import org.json.JSONStringer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,8 +22,13 @@ public class HomeController {
 	
 	@GetMapping
 	public String home(ModelMap model) {
+		String json = new JSONStringer().object().key("JSON").value("Hello, World!").endObject().toString();
+		System.out.println(json);
+		
 		ApplicationContext context = new ClassPathXmlApplicationContext("IOC.xml");
 		return "home";
 	}
+	
+	
 
 }

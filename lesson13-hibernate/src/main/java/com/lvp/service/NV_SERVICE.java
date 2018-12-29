@@ -2,6 +2,7 @@ package com.lvp.service;
 
 import java.util.Date;
 import java.util.List;
+import com.lvp.util.JBCRYPT;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,10 +37,10 @@ public class NV_SERVICE {
 	public boolean ADDONE(NV_M mnv) {
 		Date d = new Date();
 		if (mnv.getIMAGE().length == 0) {
-			NHANVIEN nv = new NHANVIEN(d.getTime(), mnv.getEMAIL(), mnv.getPASSWORDS(), d);
+			NHANVIEN nv = new NHANVIEN(d.getTime(), mnv.getEMAIL(), JBCRYPT.HASHCODE(mnv.getPASSWORDS()), d);
 			return nvd.ADDONE(nv);
 		} else {
-			NHANVIEN nv = new NHANVIEN(d.getTime(), mnv.getEMAIL(), mnv.getPASSWORDS(), mnv.getIMAGE(), d);
+			NHANVIEN nv = new NHANVIEN(d.getTime(), mnv.getEMAIL(), JBCRYPT.HASHCODE(mnv.getPASSWORDS()), mnv.getIMAGE(), d);
 			return nvd.ADDONE(nv);
 		}
 	}
