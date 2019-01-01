@@ -39,9 +39,10 @@
 			</div>
 			<div class="modal-footer">
 				<div class="btn-group" role="group" aria-label="Basic example">
-					<a class="btn btn-secondary" href="#">Facebook</a> <a
-						class="btn btn-secondary" href="#">Google</a> <a
-						class="btn btn-secondary" href="#">GitHub</a>
+					<a class="btn btn-secondary" href="https://www.facebook.com/dialog/oauth?client_id=2270798753194391&redirect_uri=http://localhost:8080/lesson13-hibernate/auth/facebook">Facebook</a>
+					<a class="btn btn-secondary" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/lesson13-hibernate/auth/google&response_type=code
+    &client_id=737176525344-iuad7rinph1rt8ulm0vlk28r5njuk6g1.apps.googleusercontent.com&approval_prompt=force">Google</a>
+    				<a class="btn btn-secondary" href="#">GitHub</a>
 				</div>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
@@ -90,9 +91,10 @@
 			</div>
 			<div class="modal-footer">
 				<div class="btn-group" role="group" aria-label="Basic example">
-					<a class="btn btn-secondary" href="#">Facebook</a> <a
-						class="btn btn-secondary" href="#">Google</a> <a
-						class="btn btn-secondary" href="#">GitHub</a>
+					<a class="btn btn-secondary" href="https://www.facebook.com/dialog/oauth?client_id=2270798753194391&redirect_uri=http://localhost:8080/lesson13-hibernate/auth/facebook">Facebook</a>
+					<a class="btn btn-secondary" href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/lesson13-hibernate/auth/google&response_type=code
+    &client_id=737176525344-iuad7rinph1rt8ulm0vlk28r5njuk6g1.apps.googleusercontent.com&approval_prompt=force">Google</a>
+    				<a class="btn btn-secondary" href="#">GitHub</a>
 				</div>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>

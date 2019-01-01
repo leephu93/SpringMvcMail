@@ -11,6 +11,7 @@
 	String index = request.getContextPath();
 	String about = request.getContextPath() + "/about";
 	String signout = request.getContextPath() + "/signout/";
+	String admin = request.getContextPath() + "/admin/";
 	String cssClass = "active";
 	String ActiveHome = "";
 	String ActiveAbout = "";
@@ -30,14 +31,12 @@
 		cssClass = "";
 	}
 	HttpSession ss = request.getSession();
-	String url_image = request.getContextPath()+"/static/img/default_user.png";
-	if(ss.getAttribute("image") != null){
-		String img = ss.getAttribute("image").toString();
-		if(img.length() != 0){
-			url_image = img;
-		}
+	String url_image = "";
+	if (ss.getAttribute("image") == null) {
+		url_image = request.getContextPath() + "/static/img/default_user.png";
+	} else {
+		url_image = ss.getAttribute("image").toString();
 	}
-	
 %>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -72,14 +71,17 @@
 		<ul class="nav justify-content-end">
 			<c:if test="${ sessionScope.user != null }">
 				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle text-success" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <img alt="..." src="<%= url_image %>" class="img_account"> Dashboard </a>
-					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item text-success" href="#">Profile</a>
+					class="nav-link dropdown-toggle text-success" href="#"
+					id="navbarDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> <img alt="..."
+						src="<%=url_image%>" class="img_account"> Dashboard
+				</a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="navbarDropdown">
+						<a class="dropdown-item text-success" href=<%= admin %>>Profile</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item text-success" href="#">Setting</a> 
-						<a class="dropdown-item text-success" href=<%=signout%>>Sign Out</a>
+						<a class="dropdown-item text-success" href="#">Setting</a> <a
+							class="dropdown-item text-success" href=<%=signout%>>Sign Out</a>
 					</div></li>
 			</c:if>
 			<c:if test="${ sessionScope.user == null }">

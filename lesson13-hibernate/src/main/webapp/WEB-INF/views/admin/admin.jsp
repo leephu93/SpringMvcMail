@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin Page</title>
+<title>J2EE Page</title>
 </head>
 <body>
-	<h1>Admin JSP</h1>
+	<h1>Hello JSP</h1>
 </body>
 </html>

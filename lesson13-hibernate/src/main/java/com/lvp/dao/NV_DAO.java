@@ -27,15 +27,12 @@ public class NV_DAO implements NV_IMPLEMENT{
 	public List<NHANVIEN> ALL_NHANVIEN() {
 		Session ss = sessionFactory.getCurrentSession();
 		String sql = "FROM NHANVIEN";
-		List<NHANVIEN> lsnv = ss.createQuery(sql).getResultList();
-//		ss.close();
-		return lsnv;
+		return ss.createQuery(sql).getResultList();
 	}
 	
 	@Transactional
 	public NHANVIEN GETONE(String email) {
 		Session ss = sessionFactory.getCurrentSession();
-//		ss.close();
 		return null;
 	}
 	
@@ -48,6 +45,22 @@ public class NV_DAO implements NV_IMPLEMENT{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	@Transactional
+	public void TEST() {
+		Session ss = sessionFactory.getCurrentSession();
+		String sql = "FROM NHANVIEN";
+		List<NHANVIEN> ls = ss.createQuery(sql, NHANVIEN.class).getResultList();
+		for(NHANVIEN nv : ls) {
+			System.out.println(nv.getID());
+			System.out.println(nv.getEMAIL());
+			if(nv.getIMAGE() != null) {
+				byte[] image = nv.getIMAGE();
+				System.out.println(image);
+			}			
+			System.out.println("********************************");
 		}
 	}
 	

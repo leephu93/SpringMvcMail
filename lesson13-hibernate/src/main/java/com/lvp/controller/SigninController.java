@@ -1,5 +1,6 @@
 package com.lvp.controller;
 
+import java.util.ArrayList;
 import java.util.Base64;
 
 import javax.servlet.http.HttpSession;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lvp.model.NV_M;
 import com.lvp.service.NV_SERVICE;
-import com.lvp.util.JBCRYPT;
 
 @Controller
 @RequestMapping("signin/")
@@ -39,22 +39,18 @@ public class SigninController {
 			@RequestParam("PASSWORDS") String passwords) {
 		if (session.getAttribute("user") == null) {
 			try {
-				NV_M nv = nvs.GETONE(email);
 				if (email.trim().length() != 0 && passwords.trim().length() != 0) {
-					if (nv != null) {
-						if (JBCRYPT.CHECKCODE(passwords, nv.getPASSWORDS())) {
-							session.setAttribute("user", nv);
-							if (nv.getIMAGE() != null) {
-								String image = "data:image/*;base64,"
-										+ Base64.getEncoder().encodeToString(nv.getIMAGE());
-								session.setAttribute("image", image);
-							}
-							return "redirect:/admin/";
-						} else {
-							model.addAttribute("alert", "Passwords incorrect...");
-						}
-					} else {
+					ArrayList<?> nv = nvs.GETONE(email, passwords);
+					if (nv.size() == 0) {
 						model.addAttribute("alert", "This account is not exist in our system...");
+					} else {
+						if (nv.get(0) instanceof String) {
+							model.addAttribute("alert", nv.get(0).toString());
+						} else if (nv.get(0) instanceof NV_M) {
+							session.setAttribute("user", ((NV_M) nv.get(0)));
+							session.setAttribute("image", "data:image/*;base64," + Base64.getEncoder().encodeToString(((NV_M) nv.get(0)).getIMAGE()));
+							return "redirect:/admin/";
+						}
 					}
 				} else if (email.trim().length() != 0 && passwords.trim().length() == 0) {
 					model.addAttribute("alert", "Passwords not empty...!");
